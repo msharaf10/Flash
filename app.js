@@ -1,20 +1,25 @@
 /*global alert ,confirm ,window ,setInterval ,setTimeout ,document ,clearInterval*/
     //  Get user info
-function getUserInfo() {
+(function getUserInfo() {
     'use strict';
-    var url = window.location.href;
+    var url = window.location.href,
+        userName,
+        userAge,
+        greetDate,
+        userNamePlace,
+        getTimeNow;
 
     //  if game page has no data(string) in url, keep moving.
     //  Otherwise, declare user's name and age variables.
-    if (typeof url.split("?")[1] === "string") {
+    if ("string" === typeof url.split("?")[1]) {
 
-        let userName = url.split("?")[1].split("=")[1].split("&")[0],
-            userAge = url.split("?")[1].split("=")[2],
+        userName = url.split("?")[1].split("=")[1].split("&")[0];
+        userAge = url.split("?")[1].split("=")[2];
 
-            //  Greeting New Guest
-            greetDate = document.getElementById('greeting-date'),
-            userNamePlace = document.getElementById('user-name'),
-            getTimeNow = new Date().getHours();
+        //  Greeting New Guest
+        greetDate = document.getElementById('greeting-date');
+        userNamePlace = document.getElementById('user-name');
+        getTimeNow = new Date().getHours();
 
         if (getTimeNow >= 5 && getTimeNow <= 11) {
 
@@ -32,9 +37,8 @@ function getUserInfo() {
             userNamePlace.innerHTML = userName + "!";
         }
     }
-}
+}());
 
-getUserInfo();
 
     //  set myGame object and store variables in it to use in functions
 var myGame = {
@@ -53,10 +57,11 @@ function setRandomColor() {
     'use strict';
 
     var letters = '0123456789ABCDEF'.split(''),
-        color = '#';
+        color = '#',
+        i;
 
-    for (var i = 0; i < 6; i++) {
-        color+= letters[Math.round(Math.random() * 15)];
+    for (i = 0; i < 6; i++) {
+        color += letters[Math.round(Math.random() * 15)];
     }
     return color;
 }
@@ -84,7 +89,7 @@ function lvEasy() {
 
     //  Display a box or circle between 2 and 5 seconds
     //  with a specific style 
-    var time = (Math.random() + 1 )* 2500;
+    var time = (Math.random() + 1) * 2500;
     setTimeout(function () {
 
         var moveTop = (Math.random() * 430),
@@ -107,7 +112,7 @@ function lvEasy() {
         myGame.myBox.style.backgroundColor = setRandomColor();
         myGame.myBox.style.display = "block";
         myGame.setTime = Date.now();
-        }, time);
+    }, time);
 }
 
 function lvMedium() {
@@ -141,7 +146,7 @@ function lvMedium() {
         myGame.myBox.style.backgroundColor = setRandomColor();
         myGame.myBox.style.display = "block";
         myGame.setTime = Date.now();
-        }, time);
+    }, time);
 }
 
 function lvHard() {
@@ -176,14 +181,12 @@ function lvHard() {
         myGame.myBox.style.backgroundColor = setRandomColor();
         myGame.myBox.style.display = "block";
         myGame.setTime = Date.now();
-        }, time);
+    }, time);
 }
 
 function lvIamFlash() {
     'use strict';
 
-    //  start count clicks
-    countClicks();
     myGame.myBox.setAttribute('data-click', 'yes');
     myGame.myBox.style.display = "none";
     myGame.myBody.className = '';
@@ -214,8 +217,8 @@ function lvIamFlash() {
         myGame.myBox.style.backgroundColor = setRandomColor();
         myGame.myBox.style.display = "block";
         myGame.setTime = Date.now();
-        }, time);
-    if (myGame.myBox.getAttribute('data-click') == "no") {
+    }, time);
+    if (myGame.myBox.getAttribute('data-click') === "no") {
         setTimeout(function () {
             myGame.myBox.style.display = "none";
         }, 1000);
@@ -229,32 +232,34 @@ myGame.myBox.onclick = function () {
     
     switch (this.className) {
             
-        case 'easy-box':
-            lvEasy();
-            break;
-            
-        case 'medium-box':
-            lvMedium();
-            break;
-            
-        case 'hard-box':
-            lvHard();
-            break;
-            
-        case 'flash-box':
-            lvIamFlash();
-            break;
+    case 'easy-box':
+        lvEasy();
+        break;
+
+    case 'medium-box':
+        lvMedium();
+        break;
+
+    case 'hard-box':
+        lvHard();
+        break;
+
+    case 'flash-box':
+        lvIamFlash();
+        countClicks();  //  start count clicks
+        break;
     }
+    var comments, myTimeMin, remMyTimeSec;
     
     //  counting and declare user result
     myGame.endTime = Date.now();
     myGame.myTime = (myGame.endTime - myGame.setTime) / 1000;
     
     //  if seconds greater than or equal 60 set minutes = 1
-    if (myGame.myTime >= 60 ) {
+    if (myGame.myTime >= 60) {
         
-        var myTimeMin = Math.floor(myGame.myTime / 60),
-            remMyTimeSec = Math.floor(myGame.myTime % 60);
+        myTimeMin = Math.floor(myGame.myTime / 60);
+        remMyTimeSec = Math.floor(myGame.myTime % 60);
         
         myGame.playerTime.innerHTML = myTimeMin + "m, " + remMyTimeSec + "s";
     
@@ -264,13 +269,13 @@ myGame.myBox.onclick = function () {
         
         myGame.playerTime.innerHTML = myGame.myTime + "s";
         
-        var cmnts = [
+        comments = [
             "Congrats," + "\n" + "You are faster than a TURTLE!",
-            "Come On," + "\n" +"Is That All You Have?!",
+            "Come On," + "\n" + "Is That All You Have?!",
             "Do you even know who FLASH is?!",
             "ooh" + "\n" + "I slept twice"
         ];
-        alert(cmnts[Math.round(Math.random() * 3)]);
+        alert(comments[Math.round(Math.random() * 3)]);
         
     } else {
         
@@ -285,35 +290,38 @@ myGame.myBox.onclick = function () {
 var levelTimer = {
 
     countTime: document.getElementById("timing"),
-    seconds: 15,
+    seconds: 5,
     secondPass: null
 };
 //  start countdown timer
-function startCount () {
-    countDown = setInterval(function() {
-            secondPass();
-          }, 1000);
+function startCount() {
+    
+    countDown = setInterval(function () {
+        secondPass();
+    }, 1000);
 }
 
 
 //  count how many clicks the user did
 
-var clicks = -1;
+var clicks = 0;
 
-function countClicks () {
-    clicks ++;
+function countClicks() {
+    'use strict';
+    clicks++;
 }
 
 //  timer Engin
 
-function secondPass () {
-        
-    var minutes =Math.floor( levelTimer.seconds / 60 ),
+function secondPass() {
+    'use strict';
+    
+    var minutes = Math.floor(levelTimer.seconds / 60),
         remSeconds = levelTimer.seconds % 60;
-    levelTimer.countTime.innerHTML = "0" + minutes + ":" + remSeconds ;
+    levelTimer.countTime.innerHTML = "0" + minutes + ":" + remSeconds;
 
 
-    if (remSeconds % 2 === 0 && remSeconds <= 7){
+    if (remSeconds % 2 === 0 && remSeconds <= 7) {
         levelTimer.countTime.style.color = '#FFF';
         if (remSeconds < 10) {
             levelTimer.countTime.innerHTML = "00:0" + remSeconds;
@@ -331,7 +339,7 @@ function secondPass () {
     }
 
     if (levelTimer.seconds > 0) {
-      levelTimer.seconds = levelTimer.seconds - 1;
+        levelTimer.seconds = levelTimer.seconds - 1;
     } else {
         clearInterval(countDown);
         levelTimer.countTime.style.color = '#7fff00';
