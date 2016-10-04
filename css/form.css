@@ -1,0 +1,179 @@
+* {
+    margin: 0px;
+}
+body {
+    background-image: url('../images/wallup-54346.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    font-family: Century Gothic, Arial, sans-serif;
+}
+.nav {
+    text-align: center;
+    padding-top: 17em;
+    line-height: 50px;
+}
+.container h1 {
+    color: #FFF;
+    font-size: 25px;
+}
+#fast {
+    font-weight: bold;
+    color: yellow;
+}
+#get-back {
+    display: none;
+}
+#get-back h2 {
+    color: #FFF;
+}
+#get-back #back {
+    padding: 7px 30px 7px 30px;
+    background-color: #DDD;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition-duration: 0.3s;
+}
+#get-back #back:hover {
+    color: #FFF;
+    background-color: blue;
+}
+button {
+    padding: 7px 30px 7px 30px;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    transition-duration: 0.3s;
+}
+#yes:hover {
+    background-color: green;
+    color: #FFF;
+}
+#no:hover {
+    background-color: red;
+    color: #FFF;
+}
+.user-info-from {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    left: 0;
+    top: 0;
+}
+form {
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-weight: bold;
+    font-family: Arial;
+    animation: animateForm 0.4s;
+}
+@keyframes animateForm {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+fieldset {
+    border: none;
+    padding: 10px;
+    margin: 0px auto;
+    width: 30%;
+    border-radius: 20px;
+    background-color: #2a95a5;
+    box-shadow: 0px 0px 20px black;
+}
+.fa-user {
+    font-size: 17px;
+}
+.fa-spinner {
+    display: none;
+    position: absolute;
+    margin-top: 36px;
+    color: #ca0007;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 50px;
+}
+.fa-home {
+    font-size: 25px;
+    color: yellow;
+}
+legend {
+    background: #2a95a5;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+label {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    display: block;
+}
+input {
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+input[type="text"],input[type="password"],textarea {
+    padding: 10px 0px 10px 25px;
+    width: 85%;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    display: block;
+}
+#submit {
+    background-color: #FFF;
+    border: none;
+    position: relative;
+    margin-top: 30px;
+    padding: 7px 30px 7px 30px;
+    width: 25%;
+    font-weight: bold;
+    font-size: 15px;
+    left: 20%;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+#submit2 {
+    color: #FFF;
+    background-color: #7ece7e;
+    border: none;
+    position: relative;
+    margin-top: 30px;
+    padding: 7px 30px 7px 30px;
+    width: 25%;
+    font-weight: bold;
+    font-size: 15px;
+    left: 20%;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+#submit:hover {
+    background-color: green;
+    color: #FFF;
+}
+#closeForm {
+    background-color: #FFF;
+    border: none;
+    position: relative;
+    margin-top: 30px;
+    padding: 7px 30px 7px 30px;
+    font-weight: bold;
+    font-size: 15px;
+    left: 25%;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+#closeForm:hover {
+    background-color: red;
+    color: #FFF;
+}

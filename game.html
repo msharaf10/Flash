@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Flash</title>
+        <link rel="icon" href="images/Flash_Logo.png">
+        <link rel="stylesheet" href="css/flash-font.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--    Header  -->
+        <div class="ricord">
+            <!--    Levels Main List    -->
+            <ul class="navigation">
+                <li class="menu">Choose Level
+                    <!--    Levels List     -->
+                    <ul class="levels" id="levels-id">
+                        <li id="easyOpt" onclick="lvEasy();">
+                            <span><i class="fa fa-bicycle"></i>Easy</span>
+                        </li>
+                        <li id="mediumOpt" onclick="lvMedium();">
+                            <span><i class="fa fa-motorcycle"></i>Medium</span>
+                        </li>
+                        <li id="hardOpt" onclick="lvHard();;">
+                            <span><i class="fa fa-plane"></i>Hard</span>
+                        </li>
+                        <li id="flashOpt" onclick="lvIamFlash();startCount();">
+                            <span><i class="fa fa-rocket"></i>I'm Flash</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!--    Greeting The Guest  -->
+            <p class="user-info">
+                <span id="greeting-date"></span>
+                <span id="user-name">Hello</span>
+            </p>
+            <div class="user-result">
+                <p id="result">Reaction Time: 
+                    <span id="playerTime">0</span>
+                </p>
+                <p id="countTime">
+                    <span id="timing">00:00</span>
+                </p>
+            </div>
+        </div>
+        <!--    Game Body   -->
+        <div class="box-body" id="box-body-id">
+            <!--    Game box or circle  -->
+            <div id="box-id" class="box-class" data-click="no">Click ME</div>
+        </div>
+        <script src="app.js"></script>
+    </body>
+</html>
