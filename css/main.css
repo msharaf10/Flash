@@ -28,7 +28,7 @@ ul {
     color: #000;
 }
 .navigation .menu:hover .levels {
-    display: block;
+    display: inline-block;
 }
 .levels {
     border-bottom-right-radius: 15px;
@@ -39,6 +39,9 @@ ul {
     text-align: right;
     margin-top: 10px;
     margin-right: -10px;
+    right: 18px;
+    top: 35px;
+    position: absolute;
     box-shadow: 0 5px 5px rgba(0,0,0,0.5);
 }
 .fa {
@@ -193,17 +196,44 @@ ul {
 #user-name {
     color: chartreuse;
 }
-.user-result {
+.result-field {
+    visibility: hidden;
     margin-top: -6px;
     line-height: 5px;
 }
 #countTime {
-    float: right;
+    display: block;
+    margin-top: -3px;
 }
-.user-result p {
+.result-field p {
     display: inline-block;
-    font-family: monospace;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 15px;
     color: #39c5da;
+}
+#setting {
+    float: right;
+    color: #FFF;
+    height: 20px;
+    margin-top: -38px;
+    padding: 3px;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+}
+.setting span i{
+    font-size: 13px;
+    margin-top: 4px;
+    margin-right: 21px;
+    cursor: pointer;
+}
+.setting span .fa-stop{
+    margin-right: 10px;
+}
+.setting span .fa-pause:hover {
+    color: #0a1da9;
+}
+.setting span .fa-play:hover {
+    color: green;
+}
+.setting span .fa-stop:hover {
+    color: red;
 }
