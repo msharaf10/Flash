@@ -3,30 +3,34 @@
 (function getUserInfo() {
     'use strict';
     var url = window.location.href,
-        userName,
-        userAge,
         greetDate,
         userNamePlace,
-        getTimeNow;
+        urlParts,
+        userName,
+        userAge,
+        now,
+        currentHour;
 
     //  if game page has no data(string) in url, keep moving.
     //  Otherwise, declare user's name and age variables.
-    if ("string" === typeof url.split("?")[1]) {
+    if (-1 !== url.indexOf('?')) {
 
-        userName = url.split("?")[1].split("=")[1].split("&")[0];
-        userAge = url.split("?")[1].split("=")[2];
+        urlParts = url.split("?")[1];
+        userName = urlParts.match(/userName=([^&]+)/)[1];
+        userAge = urlParts.match(/userAge=([^&]+)/)[1];
 
         //  Greeting New Guest
         greetDate = document.getElementById('greeting-date');
         userNamePlace = document.getElementById('user-name');
-        getTimeNow = new Date().getHours();
+        now = new Date();
+        currentHour = now.getHours();
 
-        if (getTimeNow >= 5 && getTimeNow <= 11) {
+        if (currentHour >= 5 && currentHour <= 11) {
 
             greetDate.innerHTML = "Good Morning, ";
             userNamePlace.innerHTML = userName + "!";
 
-        } else if (getTimeNow >= 12 && getTimeNow <= 18) {
+        } else if (currentHour >= 12 && currentHour <= 18) {
 
             greetDate.innerHTML = "Good Afternoon, ";
             userNamePlace.innerHTML = userName + "!";
@@ -39,19 +43,40 @@
     }
 }());
 
+(function () {
+    'use strict';
 
+    function setRandomColor() {
+        var letters = '0123456789ABCDEF'.split(''),
+            color = '#',
+            i;
+
+        for (i = 0; i < 6; i++) {
+            color += letters[Math.round(Math.random() * 15)];
+        }
+        return color;
+    }
+
+    function changeLevel(level) {
+    // levels goes here
+    }
+    document.getElementById('levels').getElementsByTagName('li').addEventListener('click', function () {
+        var levels = this.getAttribute('data-level');
+        return changeLevel(levels);
+    });
+}());
     //  set myGame object and store variables in it to use in functions
 var myGame = {
-    
-    myBody: document.getElementById('box-body-id'),
-    myBox: document.getElementById('box-id'),
+
+    myBody: document.getElementById('box-body'),
+    myBox: document.getElementById('box'),
     playerTime: document.getElementById('playerTime'),
     setTime: null,
     endTime: null,
     myTime: null,
     flashOpt: document.getElementById('flashOpt')
 };
-    
+
     //  Set a random color for the box or circle
 function setRandomColor() {
     'use strict';
@@ -68,7 +93,7 @@ function setRandomColor() {
 
     //  Not Working with "onclick" event in js file
 /*var gameLevelsSelect = {
-    levels: document.getElementById('levels-id').children,
+    levels: document.getElementById('levels').children,
     easy: document.getElementById('easyOpt'),
     medium: document.getElementById('mediumOpt'),
     hard: document.getElementById('hardOpt'),
@@ -88,7 +113,7 @@ function lvEasy() {
     myGame.myBody.className = 'easy';
 
     //  Display a box or circle between 2 and 5 seconds
-    //  with a specific style 
+    //  with a specific style
     var time = (Math.random() + 1) * 2500;
     setTimeout(function () {
 
@@ -229,9 +254,9 @@ function lvIamFlash() {
     //  level after it clicked
 myGame.myBox.onclick = function () {
     'use strict';
-    
+
     switch (this.className) {
-            
+
     case 'easy-box':
         lvEasy();
         break;
@@ -250,38 +275,38 @@ myGame.myBox.onclick = function () {
         break;
     }
     var comments, myTimeMin, remMyTimeSec;
-    
+
     //  counting and declare user result
     myGame.endTime = Date.now();
     myGame.myTime = (myGame.endTime - myGame.setTime) / 1000;
-    
+
     //  if seconds greater than or equal 60 set minutes = 1
     if (myGame.myTime >= 60) {
-        
+
         myTimeMin = Math.floor(myGame.myTime / 60);
         remMyTimeSec = Math.floor(myGame.myTime % 60);
-        
+
         myGame.playerTime.innerHTML = myTimeMin + "m, " + remMyTimeSec + "s";
-    
+
     //  if past time is more than 1 second choose randomly
     //  alert from comments array
     } else if (myGame.myTime >= 1) {
-        
+
         myGame.playerTime.innerHTML = myGame.myTime + "s";
-        
+
         comments = [
-            "Congrats," + "\n" + "You are faster than a TURTLE!",
-            "Come On," + "\n" + "Is That All You Have?!",
+            "Congrats,\nYou are faster than a TURTLE!",
+            "Come On,\nIs That All You Have?!",
             "Do you even know who FLASH is?!",
-            "ooh" + "\n" + "I slept twice"
+            "ooh\nI slept twice"
         ];
         alert(comments[Math.round(Math.random() * 3)]);
-        
+
     } else {
-        
+
         myGame.playerTime.innerHTML = myGame.myTime + "s";
     }
-    
+
     //  make the box or circle disappear again after clicked
     this.style.display = "none";
 };
@@ -295,7 +320,7 @@ var levelTimer = {
 };
 //  start countdown timer
 function startCount() {
-    
+
     countDown = setInterval(function () {
         secondPass();
     }, 1000);
@@ -315,7 +340,7 @@ function countClicks() {
 
 function secondPass() {
     'use strict';
-    
+
     var minutes = Math.floor(levelTimer.seconds / 60),
         remSeconds = levelTimer.seconds % 60;
     levelTimer.countTime.innerHTML = "0" + minutes + ":" + remSeconds;

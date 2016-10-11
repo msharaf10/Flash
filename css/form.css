@@ -56,7 +56,7 @@ button {
     background-color: red;
     color: #FFF;
 }
-.user-info-from {
+.user-info-form {
     display: none;
     position: fixed;
     z-index: 1;
@@ -130,7 +130,7 @@ input[type="text"],input[type="password"],textarea {
     border: none;
     display: block;
 }
-#submit {
+.submit {
     background-color: #FFF;
     border: none;
     position: relative;
@@ -143,7 +143,7 @@ input[type="text"],input[type="password"],textarea {
     transition-duration: 0.3s;
     cursor: pointer;
 }
-#submit2 {
+.submit2 {
     color: #FFF;
     background-color: #7ece7e;
     border: none;
@@ -157,7 +157,7 @@ input[type="text"],input[type="password"],textarea {
     transition-duration: 0.3s;
     cursor: pointer;
 }
-#submit:hover {
+.submit:hover {
     background-color: green;
     color: #FFF;
 }

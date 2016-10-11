@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Flash</title>
         <link rel="icon" href="images/Flash_Logo.png">
         <link rel="stylesheet" href="css/flash-font.min.css">
@@ -14,17 +16,17 @@
             <ul class="navigation">
                 <li class="menu">Choose Level
                     <!--    Levels List     -->
-                    <ul class="levels" id="levels-id">
-                        <li id="easyOpt" onclick="lvEasy();">
+                    <ul class="levels" id="levels">
+                        <li data-level="easy">
                             <span><i class="fa fa-bicycle"></i>Easy</span>
                         </li>
-                        <li id="mediumOpt" onclick="lvMedium();">
+                        <li data-level="medium">
                             <span><i class="fa fa-motorcycle"></i>Medium</span>
                         </li>
-                        <li id="hardOpt" onclick="lvHard();;">
+                        <li data-level="hard">
                             <span><i class="fa fa-plane"></i>Hard</span>
                         </li>
-                        <li id="flashOpt" onclick="lvIamFlash();startCount();">
+                        <li data-level="flash">
                             <span><i class="fa fa-rocket"></i>I'm Flash</span>
                         </li>
                     </ul>
@@ -36,7 +38,7 @@
                 <span id="user-name">Hello</span>
             </p>
             <div class="user-result">
-                <p id="result">Reaction Time: 
+                <p id="result">Reaction Time:
                     <span id="playerTime">0</span>
                 </p>
                 <p id="countTime">
@@ -45,10 +47,12 @@
             </div>
         </div>
         <!--    Game Body   -->
-        <div class="box-body" id="box-body-id">
+        <div class="box-body" id="box-body">
             <!--    Game box or circle  -->
-            <div id="box-id" class="box-class" data-click="no">Click ME</div>
+            <div id="box" class="box-class" data-click="no">Click ME</div>
         </div>
         <script src="app.js"></script>
+        <script src="js/jquery-3.1.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
