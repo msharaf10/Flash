@@ -14,19 +14,19 @@
         <div class="ricord">
             <!--    Levels Main List    -->
             <ul class="navigation">
-                <li class="menu" id="menu">Choose Level
+                <li id="header-menu">Choose Level
                     <!--    Levels List     -->
-                    <ul class="levels" id="levels">
-                        <li data-class="easy" data-times-up="30" data-difficulty="30" data-time="3.5" data-top="435" data-left="540" id="level-easy" class="level-choise">
+                    <ul id="levels-menu">
+                        <li data-current-level="easy" data-times-up="30" data-difficulty="30" data-time="3.5" data-top="435" data-left="540" id="level-easy" class="level-choise">
                             <span><i class="fa fa-bicycle"></i>Easy</span>
                         </li>
-                        <li data-class="medium" data-times-up="25" data-difficulty="25" data-time="3" data-top="430" data-left="807" id="level-medium" class="level-choise">
+                        <li data-current-level="medium" data-times-up="25" data-difficulty="25" data-time="3" data-top="430" data-left="807" id="level-medium" class="level-choise">
                             <span><i class="fa fa-motorcycle"></i>Medium</span>
                         </li>
-                        <li data-class="hard" data-times-up="20" data-difficulty="20" data-time="2" data-top="450" data-left="1225" id="level-hard" class="level-choise">
+                        <li data-current-level="hard" data-times-up="20" data-difficulty="20" data-time="2" data-top="450" data-left="1225" id="level-hard" class="level-choise">
                             <span><i class="fa fa-plane"></i>Hard</span>
                         </li>
-                        <li data-class="flash" data-times-up="15" data-difficulty="10" data-time="1" data-top="480" data-left="1255" id="level-flash" class="level-choise">
+                        <li data-current-level="flash" data-times-up="15" data-difficulty="10" data-time="1" data-top="480" data-left="1255" id="level-flash" class="level-choise">
                             <span><i class="fa fa-rocket"></i>I'm Flash</span>
                         </li>
                     </ul>
@@ -34,35 +34,35 @@
             </ul>
             <!--    Greeting    -->
             <p class="user-info">
-                <span id="greeting-date"></span>
+                <span id="get-date"></span>
                 <span id="user-name">Hello</span>
             </p>
             <!--    User Result     -->
-            <div class="result-field" id="result-field">
-                <p id="result">Reaction Time:
-                    <span id="playerTime">0</span>
+            <div class="user-result" id="result-field">
+                <p>Reaction Time:
+                    <span id="player-time">0</span>
                 </p>
                 <p id="countTime">
                     <span id="timing">00:00</span>
                 </p>
             </div>
-            <div class="setting" id="setting">
-                <span id="pause" title="Pause"><i class="fa fa-pause"></i></span>
-                <span id="resume" title="Resume"><i class="fa fa-play"></i> </span>
-                <span id="stop"><i class="fa fa-stop" title="Stop"></i></span>
+            <div id="game-setting">
+                <span id="pause-btn-choise" title="Pause"><i class="fa fa-pause"></i></span>
+                <span id="play-btn-choise" title="Play"><i class="fa fa-play"></i> </span>
+                <span id="play-again-btn-choise" title="Play again"><i class="fa fa-repeat"></i></span>
             </div>
         </div>
-        <!--    Result popup    -->
-        <div class="result-popup" id="result-popup">
-            <div class="contianer" id="container">
+        <!--    Result popup    -->     <!--    in progress    -->
+        <div id="result-popup">
+            <div id="container">
                 <p id="guest-result"></p>
                 <p id="score-resualt"></p>
             </div>
         </div>
         <!--    Game Body   -->
-        <div class="box-body" id="box-body">
+        <div class="default-box-body" id="box-body">
             <!--    Game box or circle  -->
-            <div id="box" class="box-class" data-click="no">Click ME</div>
+            <div id="click-me-box">Click ME</div>
         </div>
         <script src="js/app.js"></script>
     </body>

@@ -2,194 +2,177 @@
 
 (function () {
   'use strict';
+
+  // define the user's name & age from href
   var url = window.location.href,
-    now = new Date(),
     data = {
       urlParts: url.split('?')[1],
-      greetDate: document.getElementById('greeting-date'),
-      userNamePlace: document.getElementById('user-name'),
-      currentHour: now.getHours()
+      userName: null,
+      userAge: null
     },
-    userName,
-    userAge;
+    now = new Date(),
+    currentHour = now.getHours(),
+    getDate = document.getElementById('get-date'),
+    userNamePlace = document.getElementById('user-name');
 
-  // if url has string data
+  // if url has string data, print the user name
   if (url.indexOf('?') !== -1) {
 
-      userName = data.urlParts.match(/userName=([^&]+)/)[1];
-      userAge = data.urlParts.match(/userAge=([^&]+)/)[1];
+    data.userName = data.urlParts.match(/userName=([^&]+)/)[1];
+    data.userAge = data.urlParts.match(/userAge=([^&]+)/)[1];
 
 
-      if (data.getHours >= 5 && data.currentHour <= 11) {
+    if (data.getHours >= 5 && currentHour <= 11) {
 
-        data.greetDate.innerHTML = 'Good Morning, ';
-        data.userNamePlace.innerHTML = userName + '!';
+      getDate.innerHTML = 'Good Morning, ';
+      userNamePlace.innerHTML = data.userName + '!';
 
-      } else if (data.currentHour >= 12 && data.currentHour <= 18) {
+    } else if (currentHour >= 12 && currentHour <= 18) {
+      getDate.innerHTML = 'Good Afternoon, ';
+      userNamePlace.innerHTML = data.userName + '!';
+    } else {
 
-            data.greetDate.innerHTML = "Good Afternoon, ";
-            data.userNamePlace.innerHTML = userName + "!";
-
-        } else {
-
-            data.greetDate.innerHTML = "Good Evening, ";
-            data.userNamePlace.innerHTML = userName + "!";
-        }
+      getDate.innerHTML = 'Good Evening, ';
+      userNamePlace.innerHTML = data.userName + '!';
     }
+  }
 
     // set random color every time the box is appear
-    function setRandomColor() {
-        var letters = '0123456789ABCDEF'.split(''),
-          color = '#',
-          i;
+  function setRandomColor () {
 
-        for (i = 0; i < 6; i++) {
-            color += letters[Math.round(Math.random() * 15)];
-        }
-        return color;
+    var letters = '0123456789ABCDEF'.split(''),
+      color = '#',
+      i;
+    for (i = 0; i < 6; i++) {
+        color += letters[Math.round(Math.random() * 15)];
     }
+    return color;
+  }
+
+  // define page elements to the 'elements' object
+  var elements = {
+    body: document.getElementById('box-body'),
+    box: document.getElementById('click-me-box'),
+    playerTime: document.getElementById('player-time'),
+    headerMenu: document.getElementById('header-menu'),
+    levelsMenu: document.getElementById('levels-menu'),
+    timing: document.getElementById('timing'),
+    setting: document.getElementById('game-setting'),
+    resultField: document.getElementById('result-field'),
+    levels: document.getElementsByClassName('level-choise')
+  };
 
 
-    var elements = {
-      body: document.getElementById('box-body'),
-      box: document.getElementById('box'),
-      playerTime: document.getElementById('playerTime'),
-      timming: document.getElementById('timing')
-    };
+  //    display levels menu while hover
+  elements.headerMenu.addEventListener('mouseover', function () {
+    elements.levelsMenu.style.display = 'inline-block';
+  });
+  //    hide levels menu when hover out
+  elements.headerMenu.addEventListener('mouseout', function () {
+    elements.levelsMenu.style.display = 'none';
+  });
 
-
-    var menu = document.getElementById('menu'),
-      levelsMenu = document.getElementById('levels');
-    menu.onmouseover = function () {
-      levelsMenu.style.display = 'block';
-    };
-    menu.onmouseout = function () {
-      levelsMenu.style.display = 'none';
-    };
-
-  var levels = document.getElementsByClassName('level-choise'),
-    setting = document.getElementById('setting'),
-    resultField = document.getElementById('result-field'),
-    levelSeconds,
+  //    declare variables to use it as data attribute
+  var levelSeconds,
     timesUp,
-    className,
+    currentLevel,
     dataTime,
     dataTop,
     dataLeft,
-    displaySetting = function () {
-      setting.style.display = 'block';
-      resultField.style.visibility = 'visible';
-      levelsMenu.style.display = 'none';
+    // use a function expression to declare data of what ever level selected
+    defineCurrentLevel = function () {
+      elements.setting.style.display = 'block';
+      elements.resultField.style.visibility = 'visible';
+      elements.levelsMenu.style.display = 'none';
+
       levelSeconds = this.getAttribute('data-difficulty');
       timesUp = this.getAttribute('data-times-up');
-      className = this.getAttribute('data-class');
+      currentLevel = this.getAttribute('data-current-level');
       dataTime = this.getAttribute('data-time');
       dataTop = this.getAttribute('data-top');
       dataLeft = this.getAttribute('data-left');
+
       console.log(levelSeconds);
-      console.log(className);
+      console.log(currentLevel);
     },
     i;
-
-    for(i = 0; i < levels.length; i++) {
-      levels[i].addEventListener('click', displaySetting);
-    }
-
-
-
-  function pauesGame () {
-    alert(dataTime * 1000);
-  }
-  document.getElementById('pause').addEventListener('click', pauesGame);
-
-
-  var setTimer,   // for setTimeout function
-    countDown,    // for setInterval function
-    setTime,
-    endTime,
-    reactTime;
-
-
-    //
-  function endTimeout () {
-      window.clearTimeout(setTimeoutTwo);
-  }
-
-  function endInterval () {
-    window.clearInterval(countDown);
+    //  use for loop to select level then calling defineCurrentLevel function
+  for (i = 0; i < elements.levels.length; i++) {
+    elements.levels[i].addEventListener('click', defineCurrentLevel);
   }
 
 
-  function secondPass() {
+  var setTimer,     // define setTimer variable to control setTimeout function
+    countDown,      // define countDown variable to control setInterval function
+    setTime,        // store the second box has displayed
+    endTime,        // store the second player has clicked
+    reactionTime,   // store howlong player take to click the box after it displayed
+    numberOfClicks = 0;
 
-    var minutes =Math.floor( levelSeconds / 60 ),
-        remSeconds = levelSeconds % 60;
-    elements.timming.innerHTML = "0" + minutes + ":" + remSeconds ;
+  // check the level's seconds and warning when remain seconds is less than or equal to 7
+  function secondPass () {
 
+    var minutes = Math.floor(levelSeconds / 60),
+      remSeconds = levelSeconds % 60;
+    elements.timing.innerHTML = '0' + minutes + ':' + remSeconds ;
 
-    if (remSeconds % 2 === 0 && remSeconds <= 7){
-        elements.timming.style.color = '#FFF';
-        if (remSeconds < 10) {
-            elements.timming.innerHTML = "00:0" + remSeconds;
-        }
+    if (remSeconds % 2 === 0 && remSeconds <= 7) {
+      elements.timing.style.color = '#FFF';
+      if (remSeconds < 10) {
+        elements.timing.innerHTML = '00:0' + remSeconds;
+      }
     } else if (remSeconds > 7) {
-        elements.timming.style.color = '#FFF';
-        if (remSeconds < 10) {
-            elements.timming.innerHTML = "00:0" + remSeconds;
-        }
+      elements.timing.style.color = '#FFF';
+      if (remSeconds < 10) {
+        elements.timing.innerHTML = '00:0' + remSeconds;
+      }
     } else {
-        elements.timming.style.color = 'red';
-        if (remSeconds < 10) {
-            elements.timming.innerHTML = "00:0" + remSeconds;
-        }
+      elements.timing.style.color = 'red';
+      if (remSeconds < 10) {
+        elements.timing.innerHTML = '00:0' + remSeconds;
+      }
     }
 
     if (levelSeconds > 0) {
-      levelSeconds = levelSeconds - 1;
-    } else {
-      endTimeout();
-      endInterval();
-      elements.timming.style.color = '#7fff00';
-      elements.timming.innerHTML = "Time's Up";
-      elements.box.style.display = "none";
-      elements.body.className = 'box-body';
+      levelSeconds -= 1;    // change number of seconds by subtract ONE second
+
+  } else {    //    when levle seconds reach 0, STOP counting & show result
+      window.clearTimeout(setTimer);
+      window.clearInterval(countDown);
+      elements.timing.style.color = '#7fff00';
+      elements.timing.innerHTML = "Time's Up";
+      elements.box.style.display = 'none';
+      elements.body.className = 'default-box-body';
       setTimeout(function () {
-          alert('You Clicked (' + clicks + ') Times');
-          console.log(levelSeconds);
+        alert('You Clicked (' + numberOfClicks + ') Times');
+        console.log(levelSeconds);
       }, 1200);
     }
   }
 
-  var clicks = 0;
-  function countClicks () {
-    clicks++;
-    return clicks;
-  }
-
+  //    the constructor function of all levels
   function gameEngine () {
 
     elements.box.style.display = 'none';
-    elements.body.className = className;
-    var time;
-
-      time = Math.random() * dataTime * 1000;
+    elements.body.className = currentLevel; // give the box a className based on which level selected
 
 
-    setTimer = setTimeout(function () {
+    //  store the duration the box is taking to display then use it to setTimeout function
+    var time = Math.random() * dataTime * 1000;
+
+
+    setTimer = setTimeout(function () {     //  move the box to right and bottom based on its data
       var moveTop = (Math.random() * dataTop),
-          moveLeft = (Math.random() * dataLeft);
+        moveLeft = (Math.random() * dataLeft);
 
       if (Math.random() > 0.5) {
-
-          elements.box.style.borderRadius = "50%";
+        elements.box.style.borderRadius = '50%';
 
       } else {
-
-          elements.box.style.borderRadius = "0";
+        elements.box.style.borderRadius = "0";
       }
 
-      elements.box.className = '';
-      elements.box.className = className + '-box';
+      elements.box.className = currentLevel + '-box';
       elements.box.style.top = moveTop + 'px';
       elements.box.style.left = moveLeft + 'px';
       elements.box.style.backgroundColor = setRandomColor();
@@ -198,45 +181,44 @@
       setTime = Date.now();
       console.log(setTime);
     }, time);
-
   }
 
+  //    set interval function to change the number of seconds every ONE seconds
   function startCount () {
     countDown = setInterval(function () {
       secondPass();
     }, 1000);
   }
 
-
-  var setTimeoutTwo;
-
+  //   start counting When the box is clicked
   function clickMeEngine () {
 
+    numberOfClicks++;
     endTime = Date.now();
-    reactTime = (endTime - setTime) / 1000;
+    reactionTime = (endTime - setTime) / 1000;
 
-    if (reactTime >= 60) {
+    if (reactionTime >= 60) {
 
-      var myTimeMin = Math.floor(reactTime / 60),
-        remMyTimeSec = Math.floor(reactTime % 60);
+      var myTimeMin = Math.floor(reactionTime / 60),
+        remMyTimeSec = Math.floor(reactionTime % 60);
 
-        elements.playerTime.innerHTML = myTimeMin + 'm, ' + remMyTimeSec + 's';
+      elements.playerTime.innerHTML = myTimeMin + 'm, ' + remMyTimeSec + 's';
 
-    } else if (reactTime >= 1) {
+    } else if (reactionTime >= 1) {
 
-        elements.playerTime.innerHTML = reactTime + 's';
+      elements.playerTime.innerHTML = reactionTime + 's';
 
-        var comments = [
-            "Congrats," + "\n" + "You are faster than a TURTLE!",
-            "Come On," + "\n" +"Is That All You Have?!",
-            "Do you even know who FLASH is?!",
-            "ooh" + "\n" + "I slept twice"
-        ];
-        alert(comments[Math.round(Math.random() * 3)]);
+      var comments = [
+        'Congrats,\n You are faster than a TURTLE!',
+        'Come On,\n Is That All You Have?!',
+        'Do you even know who FLASH is?!',
+        'ooh\n I slept twice'
+      ];
+      alert (comments[ Math.round(Math.random() * 3) ]);
 
     } else {
 
-        elements.playerTime.innerHTML = reactTime + "s";
+      elements.playerTime.innerHTML = reactionTime + 's';
     }
 
     elements.box.style.display = 'none';
@@ -248,50 +230,56 @@
       time = Math.random() * dataTime * 1000;
     }
 
-    setTimeoutTwo = setTimeout(function () {
+    setTimer = setTimeout(function () {
       gameEngine();
-
     }, time);
   }
 
+  //    activate clickMeEngine function
+  elements.box.addEventListener('click', clickMeEngine);
 
-  function playAgain () {
-    clicks = 0;
-    switch (className) {
+
+  // store the 2 function inside one function (playNow) to use addEventListener once
+  function playNow () {
+      startCount();
+      gameEngine();
+  }
+  document.getElementById('play-btn-choise').addEventListener('click', playNow);
+
+  //    play another round with the same level
+  document.getElementById('play-again-btn-choise').addEventListener('click', function () {
+    numberOfClicks = 0;
+      //  use switch to reset level's seconds to default seconds
+    switch (currentLevel) {
 
       case 'easy':
         levelSeconds = '30';
-        gameEngine();
-        startCount();
         break;
 
       case 'medium':
         levelSeconds = '25';
-        gameEngine();
-        startCount();
         break;
 
       case 'hard':
         levelSeconds = '20';
-        gameEngine();
-        startCount();
         break;
 
       case 'flash':
         levelSeconds = '10';
-        gameEngine();
-        startCount();
         break;
-
     }
+    gameEngine();
+    startCount();
     console.log(levelSeconds);
-  }
+  });
 
-  document.getElementById('stop').addEventListener('click', playAgain);
-  //box.addEventListener('click', startCount);
-  elements.box.addEventListener('click', countClicks);
-  elements.box.addEventListener('click', clickMeEngine);
-  document.getElementById('resume').addEventListener('click', startCount);
-  document.getElementById('resume').addEventListener('click', gameEngine);
+
+  //    Cancel and clear the current 'clickme' round
+  document.getElementById('pause-btn-choise').addEventListener('click', function () {
+    elements.box.style.display = 'none';
+    reactionTime = 0;
+    window.clearTimeout(setTimer);
+    window.clearInterval(countDown);
+  });
 
 })();

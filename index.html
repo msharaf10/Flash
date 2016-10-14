@@ -11,36 +11,37 @@
     </head>
     <body>
         <!--    Pages Content    -->
-        <div class="nav" id="nav">
+        <div id="navigation">
             <!--    Main Page   -->
-            <div class="container" id="container">
+            <div id="front-field">
                 <h1>So, You Think You Are
-                    <span id="fast">Fast</span>
+                    <span class="to-yellow">Fast</span>
                     ?
                 </h1>
-                <button type="button" id="yes">Yes</button>
-                <button type="button" id="no">No</button>
+                <button type="button" id="yes-btn-choise">Yes</button>
+                <button type="button" id="no-btn-choise">No</button>
             </div>
             <!--    Go Home Page    -->
-            <div id="get-back">
+            <div id="back-field">
                 <h2>Ok, GO HOME
-                    <i class="fa fa-home"></i>
+                    <i class="fa fa-home to-yellow"></i>
                      This Game Is Not For You.
                 </h2>
-                <span id="back">Get Back</span>
+                <span id="back-btn-choise">Get Back</span>
             </div>
         </div>
         <!--    Registration Form   -->
-        <div class="user-info-form" id="formBody">
-            <form action="game.html" method="GET" name="Get Started">
+        <div class="user-info-form" id="form-body">
+            <form action="game.html" method="GET" name="Get_Started">
                 <fieldset>
                     <legend><i class="fa fa-user"></i> Register Now</legend>
-                    <label>Your Name :</label>
-                    <input type="text" name="userName" id="userName" autofocus required>
-                    <label>Your Age :</label>
-                    <input type="text" name="userAge" id="userAge" required>
-                    <i class="fa fa-spinner fa-spin fa-fw" id="spinner"></i><input  type="submit" value="Go" class="submit" id="submit">
-                    <span id="closeForm">Cancel</span>
+                    <label for="user-name">*Your Name :</label>
+                    <input type="text" name="userName" id="user-name" placeholder="Your Name" required>
+                    <label for="user-age">*Your Age :</label>
+                    <input type="text" name="userAge" id="user-age" placeholder="Your Age" required>
+                    <i class="fa fa-spinner fa-spin fa-fw" id="spinner"></i>
+                    <input  type="submit" value="Go" class="submit" id="submit-form">
+                    <span id="close-form">Cancel</span>
                 </fieldset>
             </form>
         </div>

@@ -8,26 +8,25 @@ body {
     height: 100%;
     font-family: Century Gothic, Arial, sans-serif;
 }
-.nav {
+#navigation {
     text-align: center;
     padding-top: 17em;
     line-height: 50px;
 }
-.container h1 {
+#front-field h1 {
     color: #FFF;
     font-size: 25px;
 }
-#fast {
-    font-weight: bold;
+.to-yellow {
     color: yellow;
 }
-#get-back {
+#back-field {
     display: none;
 }
-#get-back h2 {
+#back-field h2 {
     color: #FFF;
 }
-#get-back #back {
+#back-field #back-btn-choise {
     padding: 7px 30px 7px 30px;
     background-color: #DDD;
     cursor: pointer;
@@ -35,7 +34,7 @@ body {
     font-weight: bold;
     transition-duration: 0.3s;
 }
-#get-back #back:hover {
+#back-field #back-btn-choise:hover {
     color: #FFF;
     background-color: blue;
 }
@@ -48,11 +47,11 @@ button {
     border: none;
     transition-duration: 0.3s;
 }
-#yes:hover {
+#yes-btn-choise:hover {
     background-color: green;
     color: #FFF;
 }
-#no:hover {
+#no-btn-choise:hover {
     background-color: red;
     color: #FFF;
 }
@@ -116,6 +115,8 @@ label {
     margin-left: 15px;
     margin-bottom: 10px;
     display: block;
+    width: 100px;
+    cursor: pointer;
 }
 input {
     margin-bottom: 10px;
@@ -161,7 +162,7 @@ input[type="text"],input[type="password"],textarea {
     background-color: green;
     color: #FFF;
 }
-#closeForm {
+#close-form {
     background-color: #FFF;
     border: none;
     position: relative;
@@ -173,7 +174,7 @@ input[type="text"],input[type="password"],textarea {
     transition-duration: 0.3s;
     cursor: pointer;
 }
-#closeForm:hover {
+#close-form:hover {
     background-color: red;
     color: #FFF;
 }
