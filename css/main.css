@@ -1,0 +1,235 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/463438.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    float: right;
+}
+.navigation {
+    width: 120px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.navigation #header-menu {
+    padding: 10px;
+    background-color: #000;
+    color: #FFF;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+.navigation #header-menu:hover {
+    background-color: #FFF;
+    border-top-left-radius: 15px;
+    color: #000;
+}
+/*.navigation #main-menu:hover #levels-menu {
+    display: inline-block;
+}*/
+#levels-menu {
+    border-bottom-right-radius: 15px;
+    display: none;
+    background-color: #FFF;
+    width: 120px;
+    line-height: 35px;
+    text-align: right;
+    margin-top: 10px;
+    margin-right: -10px;
+    right: 18px;
+    top: 35px;
+    position: absolute;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+}
+.fa {
+    font-size: 18px;
+    margin-right: 5px;
+    float: left;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+#levels-menu li {
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    transition-duration: 0.3s;
+}
+#levels-menu li span {
+    margin-right: 15px;
+}
+#levels-menu li:hover {
+    background-color: #000;
+    color: #FFF;
+}
+.default-box-body {
+    height: 559px;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+}
+    /*  body for levels */
+.easy {
+    display: block;
+    border: 1px solid #000;
+    height: 557px;
+    width: 50%;
+    background-color: #FFF;
+    animation: setbox1 2s;
+}
+@keyframes setbox1 {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 50%;
+    }
+}
+.medium {
+    display: block;
+    border: 1px solid #000;
+    height: 557px;
+    width: 70%;
+    background-color: #FFF;
+    animation: setbox2 1.5s;
+}
+@keyframes setbox2 {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 70%;
+    }
+}
+.hard {
+    display: block;
+    border: 1px solid #000;
+    height: 557px;
+    width: 100%;
+    background-color: #FFF;
+    animation: setbox3 1s;
+}
+@keyframes setbox3 {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+.flash {
+    display: block;
+    border: 1px solid #000;
+    height: 557px;
+    background-color: #FFF;
+    animation: setbox4 0.8s;
+}
+@keyframes setbox4 {
+    0% {
+        width: 0%;
+    }
+    60% {
+        width: 100%;
+    }
+    80% {
+        width: 90%
+    }
+    100% {
+        width: 100%;
+    }
+}
+#click-me-box {
+    display: none;
+}
+    /* box for levels   */
+.easy-box, .medium-box {
+    height: 120px;
+    width: 120px;
+    display: none;
+    position: relative;
+    text-align: center;
+    line-height: 120px;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0px 0px 30px rgba(0,0,0,1);
+}
+
+.hard-box {
+    height: 100px;
+    width: 100px;
+    display: none;
+    position: relative;
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0px 0px 30px rgba(0,0,0,1);
+}
+.flash-box {
+    height: 70px;
+    width: 70px;
+    display: none;
+    position: relative;
+    text-align: center;
+    line-height: 70px;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 0px 0px 30px rgba(0,0,0,1);
+}
+.user-info {
+    color: #39c5da;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(0,0,0,0.8);
+    width: 20%;
+    margin: 0 auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#user-name {
+    color: chartreuse;
+}
+.user-result {
+    visibility: hidden;
+    margin-top: -6px;
+    line-height: 5px;
+}
+#countTime {
+    display: block;
+    margin-top: -3px;
+}
+.user-result p {
+    display: inline-block;
+    font-size: 15px;
+    color: #39c5da;
+}
+#game-setting {
+    float: right;
+    color: #FFF;
+    height: 20px;
+    margin-top: -38px;
+    padding: 3px;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+}
+#game-setting span i{
+    font-size: 13px;
+    margin-top: 4px;
+    margin-right: 21px;
+    cursor: pointer;
+}
+#game-setting span .fa-repeat{
+    margin-right: 10px;
+}
+#game-setting span .fa-pause:hover {
+    color: #0a1da9;
+}
+#game-setting span .fa-play:hover {
+    color: green;
+}
+#game-setting span .fa-repeat:hover {
+    color: red;
+}

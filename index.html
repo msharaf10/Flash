@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Register | Flash</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="images/Flash_Logo.png">
+        <link rel="stylesheet" href="css/flash-font.min.css">
+        <link rel="stylesheet" href="css/form.css">
+    </head>
+    <body>
+        <!--    Pages Content    -->
+        <div id="navigation">
+            <!--    Main Page   -->
+            <div id="front-field">
+                <h1>So, You Think You Are
+                    <span class="to-yellow">Fast</span>
+                    ?
+                </h1>
+                <button type="button" id="yes-btn-choise">Yes</button>
+                <button type="button" id="no-btn-choise">No</button>
+            </div>
+            <!--    Go Home Page    -->
+            <div id="back-field">
+                <h2>Ok, GO HOME
+                    <i class="fa fa-home to-yellow"></i>
+                     This Game Is Not For You.
+                </h2>
+                <span id="back-btn-choise">Get Back</span>
+            </div>
+        </div>
+        <!--    Registration Form   -->
+        <div class="user-info-form" id="form-body">
+            <form action="game.html" method="GET" name="Get_Started">
+                <fieldset>
+                    <legend><i class="fa fa-user"></i> Register Now</legend>
+                    <label for="user-name">*Your Name :</label>
+                    <input type="text" name="userName" id="user-name" placeholder="Your Name" required>
+                    <label for="user-age">*Your Age :</label>
+                    <input type="text" name="userAge" id="user-age" placeholder="Your Age" required>
+                    <i class="fa fa-spinner fa-spin fa-fw" id="spinner"></i>
+                    <input  type="submit" value="Go" class="submit" id="submit-form">
+                    <span id="close-form">Cancel</span>
+                </fieldset>
+            </form>
+        </div>
+        <script src="js/form.js"></script>
+    </body>
+</html>
